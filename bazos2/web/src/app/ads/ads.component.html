@@ -1,0 +1,12 @@
+<div class="flex">
+    <div class="card" style="width: auto; margin-right: 24px;" *ngFor="let ad of ads">
+        <div class="card-body">
+          <h5 class="card-title">{{ad.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ad.sellerFullName}}</h6>
+          <p class="card-text">{{ ad.text }}</p>
+          <p class="text"><b>Price: </b>{{ ad.price }}</p>
+          <p  class="card-link"><b>Phone number: </b>{{ad.phoneNumber}}</p>
+          <p  class="card-link"><b>Email adress: </b>{{ad.emailAdress}}</p>
+        </div>
+    </div>
+</div>
