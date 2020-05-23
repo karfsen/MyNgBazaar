@@ -1,6 +1,9 @@
 <div class="flex">
     <div class="card" style="width: auto; margin-right: 24px;" *ngFor="let ad of ads">
         <div class="card-body">
+          <div style="float:right;">
+            <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Edit-pencil-outline-in-circular-button.svg/1024px-Edit-pencil-outline-in-circular-button.svg.png"   title="Edit ad" width="30" height="30">      
+          </div>
           <h5 class="card-title">{{ad.title}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ad.sellerFullName}}</h6>
           <p class="card-text">{{ ad.text }}</p>

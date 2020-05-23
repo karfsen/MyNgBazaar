@@ -1,4 +1,5 @@
 <div class="flex">
+  <p *ngIf="loading">{{process}}</p>
     <div class="card" style="width: auto; margin-right: 24px;" *ngFor="let ad of ads">
         <div class="card-body">
           <h5 class="card-title">{{ad.title}}</h5>
