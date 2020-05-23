@@ -106,11 +106,26 @@ app.post("/editad",(req,res)=>{
     console.log("request on /editad");
     const index = tokens.findIndex(x => x.token === req.body.token);
     if (index !== -1){ 
-        let myquery = { _id:req.body._id };
+        let myquery = { _id:new mongo.ObjectID(req.body._id) };
         let newvalues={ $set: {title : req.body.title,text:req.body.text,price:req.body.price } };
         db.collection("ads").updateOne(myquery, newvalues, function(err, result) {
             if (err) throw err;
             res.status(200).send("Successfully edited ad.")
+        });
+    }
+    else{
+        res.status(401).send("Wrong user token")
+    }
+});
+
+app.post("/deletead",(req,res)=>{
+    console.log("request on /deletead");
+    const index = tokens.findIndex(x => x.token === req.body.token);
+    if (index !== -1){ 
+        let myquery = { _id:new mongo.ObjectID(req.body._id) };
+        db.collection("ads").remove(myquery,  function(err, result) {
+            if (err) throw err;
+            res.status(200).send("Successfully deleted ad.")
         });
     }
     else{

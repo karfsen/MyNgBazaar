@@ -18,7 +18,17 @@ export class ServerServiceService {
     return this.http.post("http://localhost:2000/myads",localStorage.getItem("token"),{headers:{"Content-Type": "application/json"}});
   }
   
-  login(username,pasword) {
-    return this.http.post("http://localhost:2000/myads",{"username":username,"password":pasword},{headers:{"Content-Type": "application/json"}});
+  login(username,password) {
+    return this.http.post("http://localhost:2000/login",{"username":username,"password":password},{headers:{"Content-Type": "application/json"}});
   }
+
+  logout(){
+    return this.http.post("http://localhost:2000/logout",localStorage.getItem("token"),{headers:{"Content-Type": "application/json"}});
+  }
+
+  register(username,password){
+    return this.http.post("http://localhost:2000/register",{"username":username,"password":password},{headers:{"Content-Type": "application/json"}});
+  }
+
+
 }

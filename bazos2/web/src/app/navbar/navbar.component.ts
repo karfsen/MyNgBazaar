@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   collapsed = true;
+  hasToken=false;
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("token")!==null){
+      this.hasToken=true;
+    }else{
+      this.hasToken=false;
+    }
+  }
+
+  logout(){
+    localStorage.removeItem("token");
   }
 
 }
