@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerServiceService } from '../services/server-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   collapsed = true;
   hasToken=false;
-  constructor() { }
+  constructor(public service:ServerServiceService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("token")!==null){
@@ -19,7 +20,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem("token");
+    this.service.logout().subscribe(result=>{
+      console.log(result);
+      localStorage.removeItem("token");
+      alert("Logout successful.");
+      window.location.href ="http://localhost:4200/";
+    },error=>{
+      console.log(error);
+      alert("Logout failed.");
+    });
   }
 
 }

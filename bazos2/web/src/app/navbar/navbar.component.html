@@ -12,7 +12,7 @@
         <li><a routerLink="/signup" *ngIf="!hasToken"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li>
           <a routerLink="/login" *ngIf="!hasToken"><span class="glyphicon glyphicon-log-in"></span> Login</a>
-          <a *ngIf="hasToken"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+          <a *ngIf="hasToken" (click)="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
         </li>
       </ul>
     </div>

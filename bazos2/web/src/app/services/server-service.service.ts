@@ -23,7 +23,7 @@ export class ServerServiceService {
   }
 
   logout(){
-    return this.http.post("http://localhost:2000/logout",localStorage.getItem("token"),{headers:{"Content-Type": "application/json"}});
+    return this.http.post("http://localhost:2000/logout",JSON.parse(localStorage.getItem("token")),{headers:{"Content-Type": "application/json"}});
   }
 
   register(username,password){

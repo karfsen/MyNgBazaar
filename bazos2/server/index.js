@@ -24,12 +24,16 @@ app.post("/login",(req,res)=>{
     db.collection("users").find({username:req.body.username,password:hashedPw}).toArray(function(err, result) {
         if (err) throw err;
         token=tokgen.generate();
-        let json={_id:result[0]._id,username:req.body.username,token:token};
-        const index = tokens.findIndex(x => x.username === json.username);
-        if (index !== -1) tokens.splice(index, 1);
-        tokens.push(json);
-        console.log(tokens);
-        res.status(200).send(json);
+        if(result==null || result.length===0){
+            res.status(401).send("Unauthorized user.");
+        }else{
+            let json={_id:result[0]._id,username:req.body.username,token:token};
+            const index = tokens.findIndex(x => x.username === json.username);
+            if (index !== -1) tokens.splice(index, 1);
+            tokens.push(json);
+            console.log(tokens);
+            res.status(200).send(json);
+        }
       });
 });
 
@@ -39,7 +43,7 @@ app.post("/logout",(req,res)=>{
     if (index !== -1){ 
         tokens.splice(index, 1);
         console.log(tokens);
-        res.status(200).send("Successfully logged out!")
+        res.status(200).send({"message":"Successfully logged out!"})
     }
     else{
         res.status(401).send("Wrong user token.");
@@ -110,7 +114,7 @@ app.post("/editad",(req,res)=>{
         let newvalues={ $set: {title : req.body.title,text:req.body.text,price:req.body.price } };
         db.collection("ads").updateOne(myquery, newvalues, function(err, result) {
             if (err) throw err;
-            res.status(200).send("Successfully edited ad.")
+            res.status(200).send({"message":"Successfully edited ad."})
         });
     }
     else{
@@ -125,7 +129,7 @@ app.post("/deletead",(req,res)=>{
         let myquery = { _id:new mongo.ObjectID(req.body._id) };
         db.collection("ads").remove(myquery,  function(err, result) {
             if (err) throw err;
-            res.status(200).send("Successfully deleted ad.")
+            res.status(200).send({"message":"Successfully deleted ad."})
         });
     }
     else{

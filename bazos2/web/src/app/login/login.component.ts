@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   disabledd:boolean=true;
   error:any;
   loginForm:FormGroup;
-  constructor(public service:ServerServiceService,private router:Router) { }
+  constructor(public service:ServerServiceService) { }
 
   ngOnInit(): void {
     this.loginForm=new FormGroup({
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       window.location.href ="http://localhost:4200/";
     },error=>{
       console.log(error);
+      alert(error.error);
     });
   }
 }
