@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServerServiceService } from '../services/server-service.service';
-import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm=new FormGroup({
       "usernameController":new FormControl("",[Validators.required,Validators.minLength(3)]),
-      "passwordController":new FormControl("",[Validators.required,Validators.minLength(5)]),
+      "passwordController":new FormControl("",[Validators.required,Validators.minLength(5)])
     });
     this.loginForm.statusChanges.subscribe(status=>{
       if(status==="VALID"){

@@ -61,7 +61,7 @@ app.post("/register",(req,result)=>{
         }else{
             db.collection("users").insertOne({username:req.body.username,password:hashedPw},function(err, res) {
                 if (err) throw err;
-                result.status(200).send("Register Successful!");
+                result.status(200).send({"message":"Register Successful!"});
               });
         }
     })
@@ -96,9 +96,19 @@ app.post("/newad",(req,res)=>{
     console.log("request on /newad");
     const index = tokens.findIndex(x => x.token === req.body.token);
     if (index !== -1){ 
-        db.collection("ads").insertOne(req.body, function(err, result) {
+        let object={
+            "userID":req.body._id,
+            "title":req.body.title,
+            "text":req.body.text,
+            "date":req.body.date,
+            "sellerFullName":req.body.sellerFullName,
+            "price":req.body.price,
+            "phoneNumber":req.body.phoneNumber,
+            "emailAdress":req.body.emailAdress
+        }
+        db.collection("ads").insertOne(object, function(err, result) {
             if (err) throw err;
-            res.status(200).send("New ad successfully added!");
+            res.status(200).send({"message":"New ad successfully added!"});
         });
     }
     else{

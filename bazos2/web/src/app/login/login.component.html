@@ -12,8 +12,8 @@
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password"  formControlName="passwordController" class="form-control" placeholder="Password" >
             <span *ngIf="loginForm.get('passwordController').touched && loginForm.get('passwordController').invalid">
-                <span *ngIf="loginForm.get('passwordController').errors['required']">Password is required</span>
-                <span *ngIf="loginForm.get('passwordController').errors['minlength']">Password is too short! Must be at least 5 letters long</span>
+                <span *ngIf="loginForm.get('passwordController').errors['required']">Password is required.</span>
+                <span *ngIf="loginForm.get('passwordController').errors['minlength']">Password is too short! Must be at least 5 letters long.</span>
             </span>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="disabledd">Login</button>

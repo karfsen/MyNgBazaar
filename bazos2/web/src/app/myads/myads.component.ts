@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ad } from '../entity/ad.model';
+import { ServerServiceService } from '../services/server-service.service';
 
 @Component({
   selector: 'app-myads',
@@ -7,14 +7,22 @@ import { Ad } from '../entity/ad.model';
   styleUrls: ['./myads.component.css']
 })
 export class MyadsComponent implements OnInit {
-  ads :Ad[]=[
-    new Ad(1,"HyperX Cloud 2","Im selling these headphones",new Date("2020-02-08"),"Martin Krendželák",78,"0911967070","bla@bla.sk"),
-    new Ad(1,"DELL INSPIRON 15","Im selling this gaming laptop",new Date("2020-02-08"),"Martin Krendželák",821,"0911967070","bla@bla.skap"),
-    new Ad(1,"SAMSUNG GALAXY S20","Im selling this mobile phone",new Date("2019-08-11"),"Martin Krendželák",350,"0911967070","bla@blabla.sk")
-  ];
-  constructor() { }
+  ads;
+  process="Loading...";
+  loading=true;
+  constructor(public service:ServerServiceService) { }
 
   ngOnInit(): void {
+    this.service.getMyAds().subscribe(result=>{
+      this.ads=result;
+      this.loading=false;
+    },error=>{
+      this.process=error.message;
+      if(error.status===401) {
+        localStorage.removeItem("token");
+        window.location.href="localhost:4200"
+      }
+    });
   }
 
 }
