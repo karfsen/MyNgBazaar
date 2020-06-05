@@ -9,6 +9,7 @@
         <li routerLinkActive="active"><a routerLink="/newad">New advertisement</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li style="margin-top: 15px; color: #9d9d9d;"><span class="glyphicon glyphicon-user" ></span> {{login}}</li>
         <li><a routerLink="/signup" *ngIf="!hasToken"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li>
           <a routerLink="/login" *ngIf="!hasToken"><span class="glyphicon glyphicon-log-in"></span> Login</a>

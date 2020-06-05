@@ -9,6 +9,7 @@ import { ServerServiceService } from '../services/server-service.service';
 export class NavbarComponent implements OnInit {
   collapsed = true;
   hasToken=false;
+  login=JSON.parse(localStorage.getItem("token")).username;
   constructor(public service:ServerServiceService) { }
 
   ngOnInit(): void {

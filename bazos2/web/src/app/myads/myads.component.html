@@ -1,6 +1,6 @@
 <div class="flex">
   <p *ngIf="loading">{{process}}</p>
-  <div class="card" style="width: auto; margin-right: 24px;" *ngFor="let ad of ads">
+  <div class="card" style="width: auto; margin: 24px;" *ngFor="let ad of ads">
       <div class="card-body">
         <form class="form-editAd" [formGroup]="editAdForm" (ngSubmit)="submit(ad._id)">
           <div *ngIf="inputs===false" style="float:right;">

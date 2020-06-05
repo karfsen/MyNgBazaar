@@ -150,6 +150,7 @@ app.post("/deletead",(req,res)=>{
 
 MongoClient.connect(url, function(err, database) {
     if(err) throw err;
+    else console.log("Database connected");
     db = database.db("bazaar");
 });
 
