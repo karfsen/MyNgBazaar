@@ -2,17 +2,40 @@
   <p *ngIf="loading">{{process}}</p>
   <div class="card" style="width: auto; margin-right: 24px;" *ngFor="let ad of ads">
       <div class="card-body">
-        <div style="float:right;">
-          <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Edit-pencil-outline-in-circular-button.svg/1024px-Edit-pencil-outline-in-circular-button.svg.png"   title="Edit ad" width="30" height="30">      
-          <img class="mb-4" src="https://www.shareicon.net/data/512x512/2015/12/02/681180_button_512x512.png"   style="margin-left: 10px;" title="Delete ad" width="30" height="30">      
-        </div>
-        <h5 class="card-title">{{ad.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ad.sellerFullName}}</h6>
-        <p class="card-text">{{ ad.text }}</p>
-        <p class="text"><b>Price: </b>{{ ad.price }}</p>
-        <p  class="card-link"><b>Phone number: </b>{{ad.phoneNumber}}</p>
-        <p  class="card-link"><b>Email adress: </b>{{ad.emailAdress}}</p>
-        <p  class="card-link"><b>Date of addition: </b>{{ad.date}}</p>
+        <form class="form-editAd" [formGroup]="editAdForm" (ngSubmit)="submit(ad._id)">
+          <div *ngIf="inputs===false" style="float:right;">
+            <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Edit-pencil-outline-in-circular-button.svg/1024px-Edit-pencil-outline-in-circular-button.svg.png"   (click)="inputs=true" title="Edit ad" width="30" height="30">      
+            <img class="mb-4" src="https://www.shareicon.net/data/512x512/2015/12/02/681180_button_512x512.png"   style="margin-left: 10px;" title="Delete ad" width="30" height="30" (click)="deletead(ad._id)">      
+          </div>
+          <h5 *ngIf="inputs===false" class="card-title">{{ad.title}}</h5>
+          <div *ngIf="inputs===true">
+            <input type="text" [placeholder]=ad.title formControlName="titleController"  class="form-control">
+            <span *ngIf="editAdForm.get('titleController').touched && editAdForm.get('titleController').invalid">
+              <span *ngIf="editAdForm.get('titleController').errors['required']">Title is required</span>
+            </span>
+          </div>
+          <h6 *ngIf="inputs===false" class="card-subtitle mb-2 text-muted">{{ad.sellerFullName}}</h6>
+          <p *ngIf="inputs===false" class="card-text">{{ ad.text }}</p>
+          <div *ngIf="inputs===true">
+            <input type="text" [placeholder]="ad.text" formControlName="descriptionController"  class="form-control">
+            <span *ngIf="editAdForm.get('descriptionController').touched && editAdForm.get('descriptionController').invalid">
+              <span *ngIf="editAdForm.get('descriptionController').errors['required']">Description is required</span>
+              <span *ngIf="editAdForm.get('descriptionController').errors['maxlength']">Description is too long! Must be maximum 100 letters long</span>
+            </span>
+          </div>
+          <p class="text" *ngIf="inputs===false"><b>Price: </b>{{ ad.price }}</p>
+          <div *ngIf="inputs===true">
+            <input type="text" [placeholder]="ad.price" formControlName="priceController"  class="form-control">
+            <span *ngIf="editAdForm.get('priceController').touched && editAdForm.get('priceController').invalid">
+              <span *ngIf="editAdForm.get('priceController').errors['required']">Price is required</span>
+            </span>
+          </div>
+          <p  class="card-link"><b>Phone number: </b>{{ad.phoneNumber}}</p>
+          <p  class="card-link"><b>Email adress: </b>{{ad.emailAdress}}</p>
+          <p  class="card-link"><b>Date of addition: </b>{{ad.date}}</p>
+          <button *ngIf="inputs===true" class="btn btn-sm btn-secondary btn-block" (click)="inputs=false">Cancel</button>
+          <button *ngIf="inputs===true" class="btn btn-sm btn-primary btn-block" type="submit" [disabled]="disabledd">Edit advertisement</button>
+        </form>
       </div>
   </div>
 </div>

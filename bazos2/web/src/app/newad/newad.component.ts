@@ -16,7 +16,7 @@ export class NewadComponent implements OnInit {
   ngOnInit(): void {
     this.newAdForm=new FormGroup({
       "titleController":new FormControl("",[Validators.required]),
-      "descriptionController":new FormControl("",[Validators.required,Validators.maxLength(50)]),
+      "descriptionController":new FormControl("",[Validators.required,Validators.maxLength(100)]),
       "sellerNameController":new FormControl("",[Validators.required]),
       "priceController":new FormControl("",[Validators.required]),
       "phoneNumberController":new FormControl("",[Validators.required]),
@@ -34,6 +34,26 @@ export class NewadComponent implements OnInit {
   }
 
   submit(){
-
+    let token=JSON.parse(localStorage.getItem("token"));
+    
+    this.service.newAd({
+      "token": token.token,
+      "_id":token._id,
+      "title":this.newAdForm.value.titleController,
+      "text":this.newAdForm.value.descriptionController,
+      "sellerFullName":this.newAdForm.value.sellerNameController,
+      "price":this.newAdForm.value.priceController,
+      "phoneNumber":this.newAdForm.value.phoneNumberController,
+      "emailAdress":this.newAdForm.value.emailController
+    }).subscribe(result=>{
+      alert("Successfully added new advertisement.");
+      window.location.href="http://localhost:4200/myads"
+    },error=>{
+      if(error.status===401) {
+        alert("Unauthorized user.");
+        localStorage.removeItem("token");
+        window.location.href="http://localhost:4200/"
+      }
+    })
   }
 }

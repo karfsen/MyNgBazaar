@@ -26,8 +26,10 @@ export class NavbarComponent implements OnInit {
       alert("Logout successful.");
       window.location.href ="http://localhost:4200/";
     },error=>{
-      console.log(error);
-      alert("Logout failed.");
+      if(error.status===401) {
+        localStorage.removeItem("token");
+        window.location.href="http://localhost:4200/"
+      }
     });
   }
 

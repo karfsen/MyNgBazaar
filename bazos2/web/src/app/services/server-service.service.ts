@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +35,11 @@ export class ServerServiceService {
     return this.http.post("http://localhost:2000/newad",ad,{headers:{"Content-Type": "application/json"}});
   }
 
+  deletead(id){
+    return this.http.post("http://localhost:2000/deletead",{_id:id,token:JSON.parse(localStorage.getItem("token")).token},{headers: {'Content-Type': 'application/json'}});
+  }
 
+  editad(ad){
+    return this.http.post("http://localhost:2000/editad",ad,{headers: {'Content-Type': 'application/json'}});
+  }
 }

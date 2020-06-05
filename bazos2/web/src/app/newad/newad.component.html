@@ -5,20 +5,20 @@
 
          <div class="form-group">
 
-            <label for="inputLogin" class="sr-only">Title</label>
+            <label  class="sr-only">Title</label>
             <input type="text"  formControlName="titleController"  class="form-control" placeholder="Title" autofocus>
             <span *ngIf="newAdForm.get('titleController').touched && newAdForm.get('titleController').invalid">
                 <span *ngIf="newAdForm.get('titleController').errors['required']">Title is required</span>
             </span>
 
-            <label for="inputPassword" class="sr-only">Description</label>
+            <label  class="sr-only">Description</label>
             <textarea type="text"  formControlName="descriptionController" class="form-control" placeholder="Descrtibe the product"></textarea>
             <span *ngIf="newAdForm.get('descriptionController').touched && newAdForm.get('descriptionController').invalid">
                 <span *ngIf="newAdForm.get('descriptionController').errors['required']">Description is required</span>
-                <span *ngIf="newAdForm.get('descriptionController').errors['maxlength']">Description is too long! Must be maximum 50 letters long</span>
+                <span *ngIf="newAdForm.get('descriptionController').errors['maxlength']">Description is too long! Must be maximum 100 letters long</span>
             </span>
 
-            <label for="inputPassword" class="sr-only">Seller name and surname</label>
+            <label  class="sr-only">Seller name and surname</label>
             <input type="text"  formControlName="sellerNameController" class="form-control" placeholder="Seller name and surname" >
             <span *ngIf="newAdForm.get('sellerNameController').touched && newAdForm.get('sellerNameController').invalid">
                 <span *ngIf="newAdForm.get('sellerNameController').errors['required']">Seller name and surname is required</span>

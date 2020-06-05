@@ -4,6 +4,7 @@
 }
 
 .card-body{
+    max-width: 300px;
     width: auto;
     margin: 24px;
 }

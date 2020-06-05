@@ -100,7 +100,7 @@ app.post("/newad",(req,res)=>{
             "userID":req.body._id,
             "title":req.body.title,
             "text":req.body.text,
-            "date":req.body.date,
+            "date":/*TODO */new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),
             "sellerFullName":req.body.sellerFullName,
             "price":req.body.price,
             "phoneNumber":req.body.phoneNumber,
