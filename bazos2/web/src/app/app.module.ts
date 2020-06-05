@@ -29,13 +29,14 @@ const appRoutes:Routes=[
     AdsComponent,
     LoginComponent,
     SignupComponent,
-    MyadsComponent
+    MyadsComponent,
+    NewadComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],

@@ -14,12 +14,12 @@ export class AdsComponent implements OnInit {
   constructor(public service:ServerServiceService) { }
 
   ngOnInit(): void {
-      this.service.getAds().subscribe((result:Array<Ad>)=>{
-        console.log(result);
-        this.ads=result;
-        this.loading=false;
-      },error=>{this.process=error.message}
-      );
+    this.service.getAds().subscribe((result:Array<Ad>)=>{
+      this.ads=result;
+      this.loading=false;
+    },error=>{
+      this.process=error.message
+    });
   }
 
 }

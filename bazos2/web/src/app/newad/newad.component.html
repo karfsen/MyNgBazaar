@@ -1,1 +1,48 @@
-<p>newad works!</p>
+<div class="text-center" style="width:300px; margin: 0 auto">
+    <form class="form-newAd"  [formGroup]="newAdForm" (ngSubmit)="submit()" >
+        <img class="mb-4" src="data:image/png;base64,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" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">New advertisement</h1>
+
+         <div class="form-group">
+
+            <label for="inputLogin" class="sr-only">Title</label>
+            <input type="text"  formControlName="titleController"  class="form-control" placeholder="Title" autofocus>
+            <span *ngIf="newAdForm.get('titleController').touched && newAdForm.get('titleController').invalid">
+                <span *ngIf="newAdForm.get('titleController').errors['required']">Title is required</span>
+            </span>
+
+            <label for="inputPassword" class="sr-only">Description</label>
+            <textarea type="text"  formControlName="descriptionController" class="form-control" placeholder="Descrtibe the product"></textarea>
+            <span *ngIf="newAdForm.get('descriptionController').touched && newAdForm.get('descriptionController').invalid">
+                <span *ngIf="newAdForm.get('descriptionController').errors['required']">Description is required</span>
+                <span *ngIf="newAdForm.get('descriptionController').errors['maxlength']">Description is too long! Must be maximum 50 letters long</span>
+            </span>
+
+            <label for="inputPassword" class="sr-only">Seller name and surname</label>
+            <input type="text"  formControlName="sellerNameController" class="form-control" placeholder="Seller name and surname" >
+            <span *ngIf="newAdForm.get('sellerNameController').touched && newAdForm.get('sellerNameController').invalid">
+                <span *ngIf="newAdForm.get('sellerNameController').errors['required']">Seller name and surname is required</span>
+            </span>
+
+            <input type="number"  formControlName="priceController" class="form-control" placeholder="Desired price"  >
+            <span *ngIf="newAdForm.get('priceController').touched && newAdForm.get('priceController').invalid">
+                <span *ngIf="newAdForm.get('priceController').errors['required']">Price is required</span>
+            </span>
+
+            <input type="text"  formControlName="phoneNumberController" class="form-control" placeholder="Phone number"  >
+            <span *ngIf="newAdForm.get('phoneNumberController').touched && newAdForm.get('phoneNumberController').invalid">
+                <span *ngIf="newAdForm.get('phoneNumberController').errors['required']">Phone number is required</span>
+            </span>
+
+            <input type="text"  formControlName="emailController" class="form-control" placeholder="Email"  >
+            <span *ngIf="newAdForm.get('emailController').touched && newAdForm.get('emailController').invalid">
+                <span *ngIf="newAdForm.get('emailController').errors['required']">Email is required</span>
+            </span>
+
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="disabledd">Create advertisement</button>
+        <span *ngIf="error"></span>
+        <p class="mt-5 mb-3 text-muted">&copy;Krendželák 2k20</p>
+    </form>
+</div> 
